@@ -19,7 +19,7 @@ interface LaunchListVars {
   limit: number;
 }
 
-const GET_LAUNCH_INFO = gql`
+export const GET_LAUNCH_INFO = gql`
   query Launches($limit: Int!, $offset: Int!) {
     launches(limit: $limit, offset: $offset) {
       id
@@ -36,12 +36,11 @@ function LaunchList() {
     {
       variables: {
         offset: 0,
-        limit: 25,
+        limit: 10,
       },
       notifyOnNetworkStatusChange: true,
     },
   );
-
   if (!data?.launches && loading) return <Loading />
   return (
     <div>
