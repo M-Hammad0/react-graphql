@@ -1,5 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should render component without error 1`] = `[Function]`;
-
-exports[`should render loading state initially 1`] = `[Function]`;

@@ -2,7 +2,6 @@ import React from "react";
 import { render, cleanup } from "@testing-library/react";
 import { MockedProvider } from "@apollo/client/testing";
 import LaunchList, { GET_LAUNCH_INFO } from "./LaunchList";
-import Loading from "../Loading/Loading";
 
 const mocks = [
   {
@@ -38,6 +37,7 @@ it("should render component without error", () => {
   );
   expect(asFragment).toMatchSnapshot();
 });
+
 
 it("should render launch list", async () => {
   const { findByText } = render(

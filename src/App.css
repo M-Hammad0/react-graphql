@@ -4,3 +4,12 @@
       background-color: black;
       margin: 5%;
 }
+
+body{
+      background-color:#292929;
+          display:flex;
+          justify-content:center;
+          align-items:center;
+          width:100%;
+          min-height:100vh;
+    }

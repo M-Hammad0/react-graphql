@@ -2,6 +2,7 @@ import React from "react";
 import { useQuery, gql } from "@apollo/client";
 import Loading from "../Loading/Loading";
 import { Waypoint } from "react-waypoint";
+import { Link } from "react-router-dom";
 
 interface LaunchListI {
   id: string,
@@ -20,7 +21,7 @@ interface LaunchListVars {
 }
 
 export const GET_LAUNCH_INFO = gql`
-  query Launches($limit: Int!, $offset: Int!) {
+  query launches($limit: Int!, $offset: Int!) {
     launches(limit: $limit, offset: $offset) {
       id
       launch_date_local
@@ -30,8 +31,10 @@ export const GET_LAUNCH_INFO = gql`
   }
 `;
 
+
+
 function LaunchList() {
-  const { loading,data, fetchMore, networkStatus} = useQuery<LaunchListData, LaunchListVars>(
+  const { loading,data, fetchMore, networkStatus, error} = useQuery<LaunchListData, LaunchListVars>(
     GET_LAUNCH_INFO,
     {
       variables: {
@@ -41,19 +44,25 @@ function LaunchList() {
       notifyOnNetworkStatusChange: true,
     },
   );
+
+  if(error) return <p style={{color: "#fff"}}>error loading data</p>
   if (!data?.launches && loading) return <Loading />
   return (
     <div>
       <h3>Launches</h3>
       <div>
-        {data?.launches.map((launched, i) => (
+        {data?.launches.map((launched,i) => (
             <div key={i}>
-              <p
+              <Link to={`${launched.mission_name}`}>
+              <div
                 className="box"
                 style={{ color: launched.launch_success ? "green" : "red" }}
               >
-                {launched.mission_name}
-              </p>
+                
+                <p>{launched.mission_name}</p>
+                <p>{launched.launch_date_local}</p>
+              </div>
+              </Link>
               {i === data.launches.length - 5 && (
                 <Waypoint onEnter={() =>
                   fetchMore({
@@ -73,6 +82,7 @@ function LaunchList() {
               )}
             </div>
           ))}
+
       </div>
       {networkStatus === 3 && <h1>loading...</h1>}
     </div>

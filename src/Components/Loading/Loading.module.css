@@ -8,14 +8,7 @@
 	background-color:#2d98da;
 	color:#fff;
 }
-body{
-  background-color:#292929;
-	display:flex;
-	justify-content:center;
-	align-items:center;
-	width:100%;
-	min-height:100vh;
-}
+
 .Box{
 	position:relative;
 	width:100px;
