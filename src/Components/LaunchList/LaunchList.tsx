@@ -3,6 +3,7 @@ import { useQuery, gql } from "@apollo/client";
 import Loading from "../Loading/Loading";
 import { Waypoint } from "react-waypoint";
 import { Link } from "react-router-dom";
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 interface LaunchListI {
   id: string,
@@ -84,7 +85,11 @@ function LaunchList() {
           ))}
 
       </div>
-      {networkStatus === 3 && <h1>loading...</h1>}
+      <div>
+        <div style={{margin: "10px auto", width:"20%"}}>
+      {networkStatus === 3 && <CircularProgress />}
+      </div>
+      </div>
     </div>
   );
 }

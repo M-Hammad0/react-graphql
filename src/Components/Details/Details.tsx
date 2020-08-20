@@ -1,6 +1,7 @@
 import React from "react";
 import { useQuery, gql } from "@apollo/client";
 import { useParams } from "react-router";
+import { CircularProgress } from "@material-ui/core";
 
 
 interface DetailsI {
@@ -46,7 +47,7 @@ function Details() {
   });
 
   if(error) return <p>{error}</p>
-  if(!data && loading) return <p>loading....</p>
+  if(!data && loading) return <CircularProgress />
 
   return (
     <div>
