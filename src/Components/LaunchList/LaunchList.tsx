@@ -40,7 +40,7 @@ function LaunchList() {
     {
       variables: {
         offset: 0,
-        limit: 10,
+        limit: 20,
       },
       notifyOnNetworkStatusChange: true,
     },
@@ -54,17 +54,18 @@ function LaunchList() {
       <div>
         {data?.launches.map((launched,i) => (
             <div key={i}>
-              <Link to={`${launched.mission_name}`}>
+              
               <div
                 className="box"
                 style={{ color: launched.launch_success ? "green" : "red" }}
               >
-                
+                <Link to={`${launched.mission_name}`}>
                 <p>{launched.mission_name}</p>
                 <p>{launched.launch_date_local}</p>
+                </Link>
               </div>
-              </Link>
-              {i === data.launches.length - 5 && (
+              
+              {i === data.launches.length - 3 && (
                 <Waypoint onEnter={() =>
                   fetchMore({
                     variables: {
