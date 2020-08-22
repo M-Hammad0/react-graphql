@@ -74,8 +74,8 @@ function Details() {
 
   return (
     <div>
-      <Container>
-        <Row>
+      <Container style={{margin: "3% auto"}}>
+        <Row style={{margin: "5% auto"}}>
           <Col>
             {data?.launches.map((i) => (
               <div key={i.id}>
@@ -84,8 +84,8 @@ function Details() {
                 <Table  bordered hover variant="dark">
                   <tbody>
                     <tr>
-                      <td>Launch Success</td>
-                      <td style={{backgroundColor: i.launch_success ? "green" : "red"}}>{i.launch_success}</td>
+                      <td>Launch</td>
+                      <td style={{backgroundColor: i.launch_success ? "green" : "red"}}></td>
                     </tr>
                     <tr>
                       <td>Launch Date</td>
@@ -108,7 +108,7 @@ function Details() {
               </div>
             ))}
           </Col>
-          <Col lg={6}>
+          <Col style={{margin: "5% auto"}}  lg={6}>
             {data?.launches.map((img, i) => (
               <div key={i}>
                 {img.links.flickr_images[0] ? (

@@ -4,6 +4,8 @@ import Loading from "../Loading/Loading";
 import { Waypoint } from "react-waypoint";
 import { Link } from "react-router-dom";
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Card from 'react-bootstrap/Card'
+import '../../App.css'
 
 interface LaunchListI {
   id: string,
@@ -50,20 +52,20 @@ function LaunchList() {
   if (!data?.launches && loading) return <Loading />
   return (
     <div>
-      <h3>Launches</h3>
+      <h1 style={{margin: "7% 0"}}>SpaceX Launches</h1>
       <div>
         {data?.launches.map((launched,i) => (
             <div key={i}>
               
-              <div
-                className="box"
-                style={{ color: launched.launch_success ? "green" : "red" }}
-              >
-                <Link to={`${launched.mission_name}`}>
-                <p>{launched.mission_name}</p>
-                <p>{launched.launch_date_local}</p>
+              
+              <Card style={{margin: "5% 0",borderRight: "50 solid red"}} bg="dark" body>
+                <Link style={{color: "#fff"}} to={`${launched.mission_name}`}>
+                <h3>LAUNCH: {launched.mission_name}<div style={{width: "25px",height: "25px",borderRadius:"28px",float: "right",backgroundColor: launched.launch_success ? "green" : "red"}}></div></h3>
+                <p>Date: {launched.launch_date_local}</p>
+                
                 </Link>
-              </div>
+                </Card>
+          
               
               {i === data.launches.length - 3 && (
                 <Waypoint onEnter={() =>
