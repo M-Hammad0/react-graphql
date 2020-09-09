@@ -44,6 +44,7 @@ function LaunchList() {
         offset: 0,
         limit: 20,
       },
+      fetchPolicy: "cache-first",
       notifyOnNetworkStatusChange: true,
     },
   );
@@ -60,7 +61,7 @@ function LaunchList() {
               
               <Card style={{margin: "5% 0",borderRight: "50 solid red"}} bg="dark" body>
                 <Link style={{color: "#fff"}} to={`${launched.mission_name}`}>
-                <h3>LAUNCH: {launched.mission_name}<div style={{width: "25px",height: "25px",borderRadius:"28px",float: "right",backgroundColor: launched.launch_success ? "green" : "red"}}></div></h3>
+                <h3 data-testid="title">LAUNCH: {launched.mission_name}<div style={{width: "25px",height: "25px",borderRadius:"28px",float: "right",backgroundColor: launched.launch_success ? "green" : "red"}}></div></h3>
                 <p>Date: {launched.launch_date_local}</p>
                 
                 </Link>

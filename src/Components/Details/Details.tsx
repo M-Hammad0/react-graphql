@@ -22,8 +22,8 @@ interface DetailsI {
     rocket_type: string;
   };
   links: {
+    article_link: string;
     flickr_images: Array<String>;
-    article_link: Object;
   };
 }
 
@@ -73,13 +73,15 @@ function Details() {
   if (!data && loading) return <CircularProgress />;
 
   return (
+    
     <div>
+      {console.log(data)}
       <Container style={{margin: "3% auto"}}>
         <Row style={{margin: "5% auto"}}>
           <Col>
-            {data?.launches.map((i) => (
-              <div key={i.id}>
-                <h3>{i.mission_name}</h3>
+            {data?.launches.length !== 0 ? data?.launches.map((i) => (
+              <div key={i.mission_name}>
+                <h3 data-testid="missionName">{i.mission_name}</h3>
                 <p style={{margin: "5% 0"}}>{i.details}<a href={i.links.article_link ? i.links.article_link.toString(): ""}> read more</a></p>
                 <Table  bordered hover variant="dark">
                   <tbody>
@@ -106,7 +108,7 @@ function Details() {
                   </tbody>
                 </Table>
               </div>
-            ))}
+            )) : <h3>No data availabe</h3>}
           </Col>
           <Col style={{margin: "5% auto"}}  lg={6}>
             {data?.launches.map((img, i) => (

@@ -2,6 +2,7 @@ import React from "react";
 import { render, cleanup } from "@testing-library/react";
 import { MockedProvider } from "@apollo/client/testing";
 import LaunchList, { GET_LAUNCH_INFO } from "./LaunchList";
+import { MemoryRouter } from 'react-router';
 
 const mocks = [
   {
@@ -9,7 +10,7 @@ const mocks = [
       query: GET_LAUNCH_INFO,
       variables: {
         offset: 0,
-        limit: 10,
+        limit: 20,
       },
     },
     result: {
@@ -39,12 +40,14 @@ it("should render component without error", () => {
 });
 
 
-it("should render launch list", async () => {
-  const { findByText } = render(
+it("should render launch list with mission name Thaicom", async () => {
+  const { findByTestId } = render(
     <MockedProvider mocks={mocks} addTypename={false}>
+      <MemoryRouter initialEntries={['/']}>
       <LaunchList />
+      </MemoryRouter>
     </MockedProvider>
   );
-  const foo = await findByText("Thaicom 6");
-  expect(foo).toBeInTheDocument();
+  const foo = await findByTestId('title')
+  expect(foo).toHaveTextContent("LAUNCH: Thaicom 6")
 });
