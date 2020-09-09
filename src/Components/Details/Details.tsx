@@ -75,7 +75,6 @@ function Details() {
   return (
     
     <div>
-      {console.log(data)}
       <Container style={{margin: "3% auto"}}>
         <Row style={{margin: "5% auto"}}>
           <Col>
